@@ -1,7 +1,7 @@
 $hands = {
-  0 => 'Rock',
-  1 => 'Paper',
-  2 => 'Scissors'
+  1 => 'Rock',
+  2 => 'Paper',
+  3 => 'Scissors'
 }
 # get player's choice
 class Player
@@ -13,13 +13,14 @@ class Player
   def hand
     loop do
       puts 'Enter a number.'
-      puts '0: Rock, 1: Paper, 2: Scissors'
-      input_hand = gets.chomp.to_i
-      if input_hand < 3
+      puts '1: Rock, 2: Paper, 3: Scissors'
+      input_hand = gets.to_i
+      if [1, 2, 3].include? input_hand
         $player_hand = get_gesture_name($hands, input_hand)
         break
+
       else
-        puts 'Enter the number again.'
+        puts 'Invalid number, Enter the number again.'
         # puts '0: goo, 1: choki, 2: par'
       end
     end
@@ -28,7 +29,7 @@ end
 # get computer's choice
 class Enemy
   def hand
-    $enemy_hand = $hands[rand($hands.length)]
+    $enemy_hand = $hands[rand(1..3)]
   end
 end
 # Janken Decision
